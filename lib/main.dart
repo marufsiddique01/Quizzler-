@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'questions.dart';
 
 void main() => runApp(Quizzler());
 
@@ -7,7 +8,7 @@ class Quizzler extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey.shade900,
+        backgroundColor: Colors.pink[100],
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -26,11 +27,28 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
 
-  List<String> questions = [
+  //addlng all the question in a list
+/*  List<String> questions = [
     'You can lead a cow down stairs but not up stairs.',
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.'
-  ];
+  ];*/
+
+//adding all the answers in the list
+  /*List<bool> answers = [
+    false,
+    true,
+    true,
+  ];*/
+
+
+  //here we created a object named question and in that object i put all my questions and answers together
+  //list of question object
+  List<Question> questionBank = [
+   Question(q:'You can lead a cow down stairs but not up stairs.', a: false ),
+   Question(q:'Approximately one quarter of human bones are in the feet.', a: true ),
+   Question(q:'A slug\'s blood is green.', a: true ),
+];
 
   int questionNumber = 0 ;
 
@@ -50,7 +68,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -74,8 +92,12 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+
+                bool correctAnswer = questionBank[questionNumber].questionAnswer;
+
                 setState(() {
                   questionNumber++;
+
                 });
 
                 //The user picked true.
@@ -96,6 +118,9 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+
+                bool correctAnswer = questionBank[questionNumber].questionAnswer;
+
                 setState(() {
                   questionNumber++;
                 });
